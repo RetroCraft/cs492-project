@@ -16,18 +16,11 @@ const FemaleCounter = ({ currentStepIndex }) => {
   } else {
     const numberOfWomen = [42, 53, 34, 20][currentStepIndex - 1];
     // draw grid of women on left-hand side and grid of men on right-hand side
-    for (let i = 0; i < numberOfWomen; i++) {
+    for (let i = 0; i < 100; i++) {
       data.push({
-        x: Math.floor(i / 10) * 10,
+        x: Math.floor(i / 10) * 10 + +(i >= numberOfWomen) * 75,
         y: (i % 10) * 10,
-        fill: '#ffc0cb',
-      });
-    }
-    for (let i = 0; i < 100 - numberOfWomen; i++) {
-      data.push({
-        x: 100 + Math.floor(i / 10) * 10,
-        y: (i % 10) * 10,
-        fill: 'teal',
+        fill: i < numberOfWomen ? '#ffc0cb' : 'teal',
       });
     }
   }

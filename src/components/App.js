@@ -11,7 +11,7 @@ const App = () => {
         <div className='pt-4 pb-1'>
           <h1 className='text-white pb-2 pt-5 title'>Where are the women in STEM?</h1>
           <h3 className='text-white subtitle pb-1'>W23 CS 492 Final Project: A Visual Essay</h3>
-          <p className='text-white by'>By: James Ah Yong, Mikhail Szugalew, Bradley Herrera.</p>
+          <p className='text-white by'>By: James Ah Yong, Mikhail Szugalew, Bradley Herrera Contreras</p>
         </div>
       </Container>
       <Container fluid="sm" className="px-5 py-5">

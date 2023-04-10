@@ -15,6 +15,7 @@ const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
       <VictoryAxis style={{ axis: { stroke: 'white' } }} />
       {disasterData.map(({ before, after, code }, i) => {
         const isBigDown = before > 60 && after < 50;
+        const isGettingBalanced = before < after;
         return (
           <VictoryLine
             categories={{ x: ['1990s', '2010s'] }}
@@ -24,10 +25,10 @@ const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
             ]}
             style={{
               data: {
-                stroke: ['black', isBigDown ? 'red' : 'grey', code === country ? 'green' : 'grey'][
+                stroke: ['#222222', isBigDown ? '#F92772' : 'grey', code === country ? '#009E60' : 'grey', isGettingBalanced ? '#A6E220' : 'grey'][
                   currentStepIndex
                 ],
-                strokeWidth: [1.5, isBigDown ? 1.5 : 1, code === country ? 4 : 1][currentStepIndex],
+                strokeWidth: [1.5, isBigDown ? 1.5 : 1, code === country ? 4 : 1, isGettingBalanced ? 1.5 : 1][currentStepIndex],
               },
             }}
             key={i}
@@ -43,12 +44,20 @@ const DisasterLineScroller = () => {
   const disaster = _.find(disasterData, ['code', country]);
   return (
     <HalfPageScroller Background={DisasterLineGraph}>
-      <div>Here's a bunch of lines.</div>
-      <div>We can highlight the lines that go down by a whole bunch.</div>
+      <div>We've compiled data points demonstrating the gender ratio of university acceptance in STEM across different countries, from the 1990s to the 2010s.
+        The Y-axis represents the ratio of women admitted, while the X-axis represents time.
+      </div>
+      <div>As discussed earlier, certain countries (highlighted) saw considerable drops in the ratio of women admitted in this time frame.</div>
       <div>
+        But each country has their own story. 
         If we consider <CountrySelect />, there is a{' '}
         {disaster.before < disaster.after ? 'rise' : 'drop'} from {_.round(disaster.before, 2)}% to{' '}
-        {_.round(disaster.after, 2)}%.
+        {_.round(disaster.after, 2)}% in the ratio of women.
+      </div>
+      <div>
+        While certain countries show progress in their admission ratios, others report a downward trend.
+        But overall, most countries' are getting closer to the middle of the graph (50% ratio of women admission in STEM).
+        While this may not be enough, it does show a general trend towards a more balanced and inclusive environment.
       </div>
     </HalfPageScroller>
   );

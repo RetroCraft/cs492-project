@@ -3,7 +3,7 @@ import Select from 'react-select';
 import CountryContext from '../contexts/CountryContext';
 import { iso31661 } from 'iso-3166';
 import _ from 'lodash';
-import { highlightableCountries } from '../data/participation';
+import { highlightableCountries } from '../data';
 
 const CountrySelect = () => {
   const { code, setCode } = React.useContext(CountryContext);

@@ -4,7 +4,7 @@ import { geoRobinson } from 'd3-geo-projection';
 import { ScrollComponent } from '../constants/types';
 import topo from '../data/world.json';
 import FullPageScroller from './FullPageScroller';
-import { latestData } from '../data/participation';
+import { latestData } from '../data';
 
 const drawSvg = ({ inputRef, data }) => {
   const width = 800;

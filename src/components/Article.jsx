@@ -4,6 +4,7 @@ import DisasterLineGraph from './DisasterLineGraph';
 import Choropleth from './Choropleth';
 import Correlator from './Correlator';
 import Highlight from './Highlight';
+import Pie from './Pie';
 import { Container } from 'react-bootstrap';
 
 export default function Article() {
@@ -18,20 +19,33 @@ export default function Article() {
         Later on in the event, we had the opportunity to talk to full-time software engineers and
         quantitative traders who work at the company. But, in contrast to the group of women who
         greeted us at the entrance, this group of engineers was exclusively male. While this is just
-        one personal anecdote, it aligns with an alarming reality of the one sided gender ratio in
-        STEM fields such as Computer Science. Take Computer Science. You're likely to notice an
-        overwhelming percent of computer scientists are men. The 2022 Stack Overflow survey of over
-        70,000 software developers found that globally only 5.17% of{' '}
-        <a href="https://survey.stackoverflow.co/2022">respondents were women</a>, an unnerving
-        statistic for one of the most popular crowd-sourcing and learning sites related to software
-        engineering. In the United States, the software publishing industry as a whole has a
-        slightly better ratio with females making up 31% of the{' '}
-        <a href="https://www.bls.gov/cps/cpsaat18.htm">workforce</a>. This disparity also exists in
-        the education system. Let's demonstrate.
+        one personal anecdote, it aligns with an alarming reality of the one sided gender ratio in many
+        STEM fields. 
+      </Container>
+      <FullPageScroller Background={Pie}>
+        <div>
+          In Computer Science, you're likely to notice an
+          overwhelming percent of computer scientists are men.
+        </div>
+        <div>
+          The 2022 Stack Overflow survey of over
+          70,000 software developers found that globally only 5.17% of{' '}
+          <a href="https://survey.stackoverflow.co/2022">respondents were women</a>, an unnerving
+          statistic for one of the most popular help sites for software
+          engineering.
+        </div>
+        <div>
+          In the United States, the software publishing industry as a whole has a
+          slightly better ratio with females making up 31% of the{' '}
+          <a href="https://www.bls.gov/cps/cpsaat18.htm">workforce</a>.
+        </div>
+      </FullPageScroller>
+      <Container>
+           We can also find this disparity in the education system. 
       </Container>
       <FullPageScroller Background={FemaleCounter}>
         <div>
-          Consider a group of <Highlight color="#222222">100 post-secondary students</Highlight>.
+          Let's consider a group of <Highlight color="#222222">100 post-secondary students</Highlight>.
         </div>
         <div>
           In 1970, <Highlight color="#ffc0cb">42 of them</Highlight> would have been women, on

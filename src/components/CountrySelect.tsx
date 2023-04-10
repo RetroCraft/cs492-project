@@ -1,15 +1,13 @@
 import React from 'react';
 import Select from 'react-select';
 import CountryContext from '../contexts/CountryContext';
-
-import participation from '../data/participation_all.json';
 import { iso31661 } from 'iso-3166';
 import _ from 'lodash';
-const allCountries = Array.from(new Set(participation.map((d) => d.code)));
+import { highlightableCountries } from '../data/participation';
 
 const CountrySelect = () => {
   const { code, setCode } = React.useContext(CountryContext);
-  const options = allCountries.map((c) => ({
+  const options = highlightableCountries.map((c) => ({
     value: c,
     label: _.find(iso31661, ['alpha3', c])?.name,
   }));
@@ -19,9 +17,9 @@ const CountrySelect = () => {
       onChange={(o) => setCode(o.value)}
       options={options}
       styles={{
-        control: (provided, state) => ({
+        container: (provided) => ({
           ...provided,
-          border: 'none',
+          display: 'inline-block',
         }),
       }}
     />

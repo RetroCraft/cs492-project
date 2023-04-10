@@ -2,29 +2,18 @@ import React from 'react';
 import _ from 'lodash';
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory';
 
-import participation from '../data/participation_all.json';
 import { useCountry } from '../contexts/CountryContext';
+import { disasterData } from '../data/participation';
+import CountrySelect from './CountrySelect';
+import HalfPageScroller from './HalfPageScroller';
+import { ScrollComponent } from '../constants/types';
 
-const allCountries = new Set(participation.map((d) => d.code));
-const data = Array.from(allCountries)
-  .map((code) => {
-    const countryData = participation.filter((d) => d.code === code);
-    const nineties = countryData.filter(({ year }) => year >= 1990 && year < 2000);
-    const teens = countryData.filter(({ year }) => year >= 2010 && year < 2020);
-    return {
-      before: nineties.length ? _.meanBy(nineties, 'participation') : NaN,
-      after: teens.length ? _.meanBy(teens, 'participation') : NaN,
-      code,
-    };
-  })
-  .filter(({ before, after }) => !_.isNaN(before) && !_.isNaN(after));
-
-const DisasterLineGraph = ({ currentStepIndex }) => {
+const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
   const country = useCountry();
   return (
     <VictoryChart height={window.innerHeight - 100}>
       <VictoryAxis style={{ axis: { stroke: 'white' } }} />
-      {data.map(({ before, after, code }, i) => {
+      {disasterData.map(({ before, after, code }, i) => {
         const isBigDown = before > 60 && after < 50;
         return (
           <VictoryLine
@@ -49,4 +38,20 @@ const DisasterLineGraph = ({ currentStepIndex }) => {
   );
 };
 
-export default DisasterLineGraph;
+const DisasterLineScroller = () => {
+  const country = useCountry();
+  const disaster = _.find(disasterData, ['code', country]);
+  return (
+    <HalfPageScroller Background={DisasterLineGraph}>
+      <div>Here's a bunch of lines.</div>
+      <div>We can highlight the lines that go down by a whole bunch.</div>
+      <div>
+        If we consider <CountrySelect />, there is a{' '}
+        {disaster.before < disaster.after ? 'drop' : 'rise'} from {_.round(disaster.before, 2)}% to{' '}
+        {_.round(disaster.after, 2)}%.
+      </div>
+    </HalfPageScroller>
+  );
+};
+
+export default DisasterLineScroller;

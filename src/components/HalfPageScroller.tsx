@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
+import { ScrollComponent } from '../constants/types';
 
 const HalfPageScroller: React.FC<{
-  Background: typeof React.Component;
+  Background: ScrollComponent;
   children: React.ReactNode;
 }> = ({ Background, children }) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);

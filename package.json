@@ -14,6 +14,7 @@
     "@mdx-js/react": "^1.0.0",
     "bootstrap": "^5.2.3",
     "d3": "7",
+    "d3-geo-projection": "^4.0.0",
     "d3-selection": "^2.0.0",
     "d3-transition": "^2.0.0",
     "iso-3166": "^4.2.0",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@parcel/transformer-mdx": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
+    "@types/d3": "^7.4.0",
     "@types/lodash": "^4.14.192",
     "gh-pages": "^0.12.0",
     "parcel": "^2.8.3",

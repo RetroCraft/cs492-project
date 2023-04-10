@@ -2,6 +2,14 @@ import participation from './participation_all.json';
 import _ from 'lodash';
 
 export const allCountries = new Set(participation.map((d) => d.code));
+export const latestData = Array.from(allCountries).reduce((acc, code) => {
+  const countryData = participation.filter((d) => d.code === code);
+  const latest = _.maxBy(countryData, 'year');
+  return {
+    ...acc,
+    [code]: latest.participation,
+  };
+}, {});
 export const disasterData = Array.from(allCountries)
   .map((code) => {
     const countryData = participation.filter((d) => d.code === code);

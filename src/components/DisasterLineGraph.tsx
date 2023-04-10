@@ -27,7 +27,7 @@ const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
                 stroke: ['black', isBigDown ? 'red' : 'grey', code === country ? 'green' : 'grey'][
                   currentStepIndex
                 ],
-                strokeWidth: [1.5, 1.5, code === country ? 4 : 1][currentStepIndex],
+                strokeWidth: [1.5, isBigDown ? 1.5 : 1, code === country ? 4 : 1][currentStepIndex],
               },
             }}
             key={i}

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
 
-const FullPageScroller: React.FC<{Background: typeof React.Component, children: React.ReactNode}> = ({ Background, children }) => {
+const FullPageScroller: React.FC<{
+  Background: typeof React.Component;
+  children: React.ReactNode;
+}> = ({ Background, children }) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
@@ -11,11 +14,17 @@ const FullPageScroller: React.FC<{Background: typeof React.Component, children: 
 
   return (
     <div>
-      <div style={{
-        position: 'sticky', top: 0, height: '100vh',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        zIndex: -100
-      }}>
+      <div
+        style={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: -100,
+        }}
+      >
         <div className="container-fluid">
           <Background currentStepIndex={currentStepIndex} />
         </div>
@@ -28,7 +37,7 @@ const FullPageScroller: React.FC<{Background: typeof React.Component, children: 
                 padding: `25vh 0 ${stepIndex === steps.length - 1 ? '50vh' : '25vh'} 0`,
                 opacity: currentStepIndex === stepIndex ? 1 : 0.2,
                 transition: 'opacity 0.5s',
-                zIndex: '100'
+                zIndex: '100',
               }}
             >
               <div className="row p-4 align-items-center rounded-3 border shadow-lg bg-white">

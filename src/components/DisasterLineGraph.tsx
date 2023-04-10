@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
-import { VictoryAxis, VictoryChart, VictoryLine } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryVoronoiContainer } from 'victory';
 
 import { useCountry } from '../contexts/CountryContext';
-import { disasterData } from '../data';
+import { codeToName, disasterData } from '../data';
 import CountrySelect from './CountrySelect';
 import HalfPageScroller from './HalfPageScroller';
 import { ScrollComponent } from '../constants/types';
@@ -12,7 +12,14 @@ import Highlight from './Highlight';
 const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
   const country = useCountry();
   return (
-    <VictoryChart height={window.innerHeight - 100}>
+    <VictoryChart
+      height={window.innerHeight - 100}
+      containerComponent={
+        <VictoryVoronoiContainer
+          labels={({ datum }) => `${codeToName[datum.code]}\n${_.round(datum.y, 1)}%`}
+        />
+      }
+    >
       <VictoryAxis
         style={{
           axis: { stroke: 'white' },
@@ -45,12 +52,15 @@ const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
                   code === country ? '#009E60' : 'grey',
                   isGettingBalanced ? '#A6E220' : 'grey',
                 ][currentStepIndex],
-                strokeWidth: [
-                  1.5,
-                  isBigDown ? 1.5 : 1,
-                  code === country ? 4 : 1,
-                  isGettingBalanced ? 1.5 : 1,
-                ][currentStepIndex],
+                strokeWidth: ({ active }) =>
+                  active
+                    ? 4
+                    : [
+                        1.5,
+                        isBigDown ? 1.5 : 1,
+                        code === country ? 4 : 1,
+                        isGettingBalanced ? 1.5 : 1,
+                      ][currentStepIndex],
               },
             }}
             key={i}
@@ -87,9 +97,9 @@ const DisasterLineScroller = () => {
       </div>
       <div>
         While certain countries show progress in their admission ratios, others report a downward
-        trend. But overall, <Highlight color="#A6E220">most countries</Highlight> are getting closer to the middle of the graph (50% ratio
-        of women admission in STEM). While this may not be enough, it does show a general trend
-        towards a more balanced and inclusive environment.
+        trend. But overall, <Highlight color="#A6E220">most countries</Highlight> are getting closer
+        to the middle of the graph (50% ratio of women admission in STEM). While this may not be
+        enough, it does show a general trend towards a more balanced and inclusive environment.
       </div>
     </HalfPageScroller>
   );

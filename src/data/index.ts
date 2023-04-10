@@ -3,10 +3,15 @@ import culture from './culture.json';
 import _ from 'lodash';
 import { iso31661 } from 'iso-3166';
 
+export const codeToName = iso31661.reduce((acc, d) => ({ ...acc, [d.alpha3]: d.name }), {});
+codeToName.USA = 'United States';
+codeToName.GBR = 'United Kingdom';
+
 export const allCountries = _.sortBy(
   _.uniq(participation.map((d) => d.code)),
-  (code) => iso31661.find((d) => d.alpha3 === code).name,
+  (code) => codeToName[code],
 );
+export const allData = _.groupBy(participation, 'code');
 export const latestData = allCountries.reduce((acc, code) => {
   const countryData = participation.filter((d) => d.code === code);
   const latest = _.maxBy(countryData, 'year');

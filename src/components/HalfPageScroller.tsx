@@ -5,7 +5,8 @@ import { ScrollComponent } from '../constants/types';
 const HalfPageScroller: React.FC<{
   Background: ScrollComponent;
   children: React.ReactNode;
-}> = ({ Background, children }) => {
+  textWidth?: number;
+}> = ({ Background, children, textWidth = 8 }) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const onStepEnter = ({ data }) => {
     setCurrentStepIndex(data);
@@ -16,7 +17,7 @@ const HalfPageScroller: React.FC<{
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-8">
+        <div className={`col-${textWidth}`}>
           <Scrollama offset={0.5} onStepEnter={onStepEnter}>
             {steps.map((step, stepIndex) => (
               <Step data={stepIndex} key={stepIndex}>
@@ -33,7 +34,7 @@ const HalfPageScroller: React.FC<{
             ))}
           </Scrollama>
         </div>
-        <div className="col-4">
+        <div className={`col-${12 - textWidth}`}>
           <div
             style={{
               position: 'sticky',
@@ -41,12 +42,9 @@ const HalfPageScroller: React.FC<{
               height: '100vh',
               display: 'flex',
               alignItems: 'center',
-              zIndex: -100,
             }}
           >
-            <div>
-              <Background currentStepIndex={currentStepIndex} />
-            </div>
+            <Background currentStepIndex={currentStepIndex} />
           </div>
         </div>
       </div>

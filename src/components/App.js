@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
-import Article from './Article.mdx';
+import Article from './Article';
 import CountryContext from '../contexts/CountryContext';
 
 const App = () => {
@@ -14,8 +14,8 @@ const App = () => {
           <p className='text-white by'>By: James Ah Yong, Mikhail Szugalew, Bradley Herrera Contreras</p>
         </div>
       </Container>
-      <Container fluid="sm" className="px-5 py-5">
-        <div className="px-3">
+      <Container fluid>
+        <div className="px-5 py-5">
           <Article />
         </div>
       </Container>

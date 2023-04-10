@@ -34,6 +34,7 @@ const FullPageScroller: React.FC<{
         {steps.map((step, stepIndex) => (
           <Step data={stepIndex} key={stepIndex}>
             <div
+              className="container"
               style={{
                 padding: `25vh 0 ${stepIndex === steps.length - 1 ? '50vh' : '25vh'} 0`,
                 opacity: currentStepIndex === stepIndex ? 1 : 0.2,

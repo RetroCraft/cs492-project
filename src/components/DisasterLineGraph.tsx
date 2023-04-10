@@ -7,6 +7,7 @@ import { disasterData } from '../data';
 import CountrySelect from './CountrySelect';
 import HalfPageScroller from './HalfPageScroller';
 import { ScrollComponent } from '../constants/types';
+import Highlight from './Highlight';
 
 const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
   const country = useCountry();
@@ -19,6 +20,12 @@ const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
         }}
         dependentAxis
         tickValues={[25, 50, 75]}
+      />
+      <VictoryAxis
+        style={{
+          axis: { stroke: 'white' },
+          tickLabels: { fontFamily: 'inherit', fontSize: '20px' },
+        }}
       />
       {Object.values(disasterData).map(({ before, after, code }, i) => {
         const isBigDown = before > 60 && after < 50;
@@ -65,17 +72,22 @@ const DisasterLineScroller = () => {
         women admitted, while the X-axis represents time.
       </div>
       <div>
-        As discussed earlier, certain countries (highlighted) saw considerable drops in the ratio of
-        women admitted in this time frame.
+        As discussed earlier, <Highlight color="#F92772">certain countries</Highlight> saw
+        considerable drops in the ratio of women admitted in this time frame.
       </div>
       <div>
-        But each country has their own story. If we consider <CountrySelect />, there is a{' '}
-        {disaster.before < disaster.after ? 'rise' : 'drop'} from {_.round(disaster.before, 2)}% to{' '}
-        {_.round(disaster.after, 2)}% in the ratio of women.
+        But each country has their own story. If we consider <CountrySelect />, there was a{' '}
+        <Highlight color="#009E60">
+          {Math.abs(disaster.before - disaster.after) > 10 && 'big '}
+          {Math.abs(disaster.before - disaster.after) < 2 && 'slight '}
+          {disaster.before < disaster.after ? 'rise' : 'drop'} from {_.round(disaster.before, 2)}%
+          to {_.round(disaster.after, 2)}%
+        </Highlight>{' '}
+        in the ratio of women.
       </div>
       <div>
         While certain countries show progress in their admission ratios, others report a downward
-        trend. But overall, most countries' are getting closer to the middle of the graph (50% ratio
+        trend. But overall, <Highlight color="#A6E220">most countries</Highlight> are getting closer to the middle of the graph (50% ratio
         of women admission in STEM). While this may not be enough, it does show a general trend
         towards a more balanced and inclusive environment.
       </div>

@@ -1,6 +1,13 @@
 @import 'https://cdn.jsdelivr.net/npm/typeface-et-book@0.0.2/et-book/et-book.min.css';
 $font-family-base: et-book;
 $font-size-base: 1.5rem;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 720px,
+  xl: 720px,
+  xxl: 720px
+);
 
 @import '~bootstrap/scss/bootstrap';
 

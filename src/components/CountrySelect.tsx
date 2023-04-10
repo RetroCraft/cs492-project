@@ -21,6 +21,19 @@ const CountrySelect = () => {
           ...provided,
           display: 'inline-block',
         }),
+        control: (provided) => ({
+          ...provided,
+          border: 'none',
+          boxShadow: `inset 0 -.15em 0 #009E60`,
+          borderRadius: 0
+        }),
+        valueContainer: (provided) => ({
+          ...provided,
+          padding: 0,
+        }),
+        indicatorSeparator: (provided) => ({
+          display: 'none',
+        }),
       }}
     />
   );

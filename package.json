@@ -2,26 +2,27 @@
   "name": "cs492-project",
   "version": "1.0.0",
   "license": "MIT",
-  "idyll": {
-    "theme": "idyll",
-    "layout": "centered",
-    "css": "styles.css",
-    "authorView": false
-  },
   "type": "module",
   "scripts": {
-    "start": "idyll",
-    "build": "idyll build",
-    "publish": "idyll publish"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "dependencies": {
-    "idyll": "6.0.0-alpha.4",
-    "idyll-d3-component": "^2.0.0",
+    "@mdx-js/react": "^1.0.0",
+    "bootstrap": "^5.2.3",
     "d3": "7",
     "d3-selection": "^2.0.0",
-    "d3-transition": "^2.0.0"
+    "d3-transition": "^2.0.0",
+    "react": "^17.0.0",
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^17.0.0",
+    "react-scrollama": "^2.3.2"
   },
   "devDependencies": {
-    "gh-pages": "^0.12.0"
+    "@parcel/transformer-mdx": "^2.8.3",
+    "@parcel/transformer-sass": "^2.8.3",
+    "gh-pages": "^0.12.0",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
   }
 }

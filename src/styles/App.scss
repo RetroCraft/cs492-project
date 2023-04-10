@@ -1,1 +1,21 @@
 @import "~bootstrap/scss/bootstrap";
+
+.head {
+    background-color: #222222;
+
+    .title {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        //padding-top: 10px;
+        font-weight: 200;
+    }
+
+    .by {
+        font-weight: 300;
+    }
+}
+
+
+

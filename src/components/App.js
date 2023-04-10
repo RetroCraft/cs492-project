@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container'
 import Article from './Article.mdx';
 import CountryContext from '../contexts/CountryContext';
 
@@ -7,8 +7,12 @@ const App = () => {
   const [code, setCode] = React.useState('CAN');
   return (
     <CountryContext.Provider value={{ code, setCode }}>
-      <Container fluid className="bg-dark text-secondary px-4 py-5 text-center">
-        <h1 className="text-white">CS492 Final Project</h1>
+      <Container fluid className='text-secondary px-4 pt-5 pb-5 text-center head'>
+        <div className='pt-4 pb-1'>
+          <h1 className='text-white pb-2 pt-5 title'>Where are the women in STEM?</h1>
+          <h3 className='text-white subtitle pb-1'>W23 CS 492 Final Project: A Visual Essay</h3>
+          <p className='text-white by'>By: James Ah Yong, Mikhail Szugalew, Bradley Herrera.</p>
+        </div>
       </Container>
       <Container fluid="sm" className="px-4 py-5">
         <Article />

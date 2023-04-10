@@ -47,7 +47,7 @@ const DisasterLineScroller = () => {
       <div>We can highlight the lines that go down by a whole bunch.</div>
       <div>
         If we consider <CountrySelect />, there is a{' '}
-        {disaster.before < disaster.after ? 'drop' : 'rise'} from {_.round(disaster.before, 2)}% to{' '}
+        {disaster.before < disaster.after ? 'rise' : 'drop'} from {_.round(disaster.before, 2)}% to{' '}
         {_.round(disaster.after, 2)}%.
       </div>
     </HalfPageScroller>

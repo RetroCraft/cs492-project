@@ -1,21 +1,18 @@
-@import "~bootstrap/scss/bootstrap";
+@import 'https://cdn.jsdelivr.net/npm/typeface-et-book@0.0.2/et-book/et-book.min.css';
+$font-family-base: et-book;
+$font-size-base: 1.5rem;
+
+@import '~bootstrap/scss/bootstrap';
 
 .head {
-    background-color: #222222;
+  background-color: #222222;
 
-    .title {
-        font-size: 48px;
-    }
+  .subtitle {
+    //padding-top: 10px;
+    font-weight: 200;
+  }
 
-    .subtitle {
-        //padding-top: 10px;
-        font-weight: 200;
-    }
-
-    .by {
-        font-weight: 300;
-    }
+  .by {
+    font-weight: 300;
+  }
 }
-
-
-

@@ -14,8 +14,10 @@ const App = () => {
           <p className='text-white by'>By: James Ah Yong, Mikhail Szugalew, Bradley Herrera.</p>
         </div>
       </Container>
-      <Container fluid="sm" className="px-4 py-5">
-        <Article />
+      <Container fluid="sm" className="px-5 py-5">
+        <div className="px-3">
+          <Article />
+        </div>
       </Container>
     </CountryContext.Provider>
   );

@@ -35,7 +35,7 @@ const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
         }}
       />
       {Object.values(disasterData).map(({ before, after, code }, i) => {
-        const isBigDown = before > 60 && after < 50;
+        const isBigDown = before > 50 && after < 50;
         const isGettingBalanced = before < after;
         return (
           <VictoryLine

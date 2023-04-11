@@ -3,6 +3,7 @@ import React from 'react';
 import BootstrapButton from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { VictoryAxis, VictoryChart, VictoryScatter, VictoryVoronoiContainer } from 'victory';
+import tinycolor from 'tinycolor2';
 
 import { ScrollComponent, axisStyle } from '../constants';
 import { useCountry } from '../contexts/CountryContext';
@@ -18,11 +19,12 @@ import {
 import CountrySelect from './CountrySelect';
 import HalfPageScroller from './HalfPageScroller';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Highlight from './Highlight';
 
 const colors = {
   Europe: '#1f77b4',
   'Asia & Pacific': '#ff7f0e',
-  'South/Latin America': '#2ca02c',
+  'South/Latin America': '#6dcf77',
   'Arab States': '#d62728',
   'North America': '#9467bd',
   Africa: '#8c564b',
@@ -120,6 +122,8 @@ const dataExtractors = {
   },
 };
 
+const highlights = ['POL', 'SRB', 'ROU', 'USA', 'CAN'];
+
 const CorrelatorPlayground = React.createContext({
   xAxis: 'masculinity',
   setXAxis: (_) => {},
@@ -160,7 +164,20 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
       <VictoryAxis dependentAxis label={dataExtractors[Y].name} style={axisStyle} />
       <VictoryScatter
         data={data}
-        style={{ data: { fill: ({ datum }) => colors[regions[datum.code]] } }}
+        style={{
+          data: {
+            fill: ({ datum }) => {
+              if (currentStepIndex === 1) {
+                if (country === datum.code) return '#009E60';
+                if (highlights.includes(datum.code)) {
+                  return colors[regions[datum.code]];
+                }
+                return tinycolor(colors[regions[datum.code]])!.setAlpha(0.4).toHex8String();
+              }
+              return colors[regions[datum.code]];
+            },
+          },
+        }}
         animate={{ duration: 500 }}
         bubbleProperty="amount"
         maxBubbleSize={25}
@@ -199,10 +216,42 @@ const CorrelatorScroller = () => {
   return (
     <CorrelatorPlayground.Provider value={{ xAxis, setXAxis, yAxis, setYAxis, sizing, setSizing }}>
       <HalfPageScroller Background={Correlator} textWidth={6}>
-        <div>Here's a bunch of lines.</div>
-        <div>We can highlight the lines that go down by a whole bunch.</div>
         <div>
-          <p>See if you can find an interesting correlation:</p>
+          <p>
+            The map is pretty, but not super helpful for seeing what the values actually are. On
+            this graph, countries are coloured by their region and the size of the bubble denotes
+            population. Hover over a dot to see the exact value.
+          </p>
+          <p>
+            We hypothesized that cultural factors affect the gender gap and tested this by using
+            Hofstede's six cultural dimensions.
+          </p>
+          <p>
+            <small>
+              Note: Masculinity here is not a measure of bias, but the tendency of a culture to be
+              achievement-oriented and hero-worshipping.
+            </small>
+          </p>
+        </div>
+        <div>
+          <p>
+            You can see that some eastern European countries like{' '}
+            <Highlight color="#1f77b4">Serbia</Highlight>,
+            <Highlight color="#1f77b4">Romania</Highlight>, and{' '}
+            <Highlight color="#1f77b4">Poland</Highlight> still stand out as the most equal European
+            nations. Yet, they are also the most predisposed to a hierarchical society.
+          </p>
+          <p>
+            We can also see that <Highlight color="#9467bd">Canada</Highlight> and{' '}
+            <Highlight color="#9467bd">the United States</Highlight> are, as we know, culturally
+            similar and have a similar gender gap.
+          </p>
+          <p>
+            The country you selected before, <CountrySelect />, is also highlighted.
+          </p>
+        </div>
+        <div>
+          <p>Here's a bunch of data that we've collected. See if you can find any patterns:</p>
           <p>
             National indicators:{' '}
             <ButtonGroup vertical>

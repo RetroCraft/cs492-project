@@ -7,6 +7,7 @@ import Highlight from './Highlight';
 import Pie from './Pie';
 import BarGraph from './BarGraph';
 import { Container } from 'react-bootstrap';
+import LineGraphScroller from './LineGraph';
 
 export default function Article() {
   return (
@@ -104,7 +105,7 @@ export default function Article() {
         aspernatur? Quo, voluptatibus modi.
       </Container>
       <Correlator />
-
+      <LineGraphScroller />
       <Container>
         <h2>Why Girls Aren't Choosing Computer Science</h2>
         <div>

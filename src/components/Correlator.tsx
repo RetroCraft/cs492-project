@@ -26,19 +26,29 @@ const dataExtractors = {
   indulgence: { name: 'Indulgence', get: (code) => cultureData[code]?.indulgence },
 
   latest: { name: 'Participation (%, latest)', get: (code) => latestData[code] },
-  latestWorldBank: { name: 'STEM graduates (%, latest, c. 2018)', get: (code) => latestData[code] },
-  earliestWorldBank: { name: 'STEM graduates (%, c. 2000)', get: (code) => latestData[code] },
-  handpicked: {
-    name: 'CS/Math students (%, c. 2000, handpicked)',
+  latestWorldBank: {
+    name: 'STEM graduates (%, c. 2018, World Bank)',
     get: (code) => latestData[code],
   },
+  earliestWorldBank: {
+    name: 'STEM graduates (%, c. 2000, World Bank)',
+    get: (code) => _.minBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation,
+  },
+  handpicked: {
+    name: 'CS/Math students (%, c. 2000, handpicked)',
+    get: (code) => _.maxBy(_.filter(allData[code], ['citation', 'Galpin']), 'year')?.participation,
+  },
   unesco: {
-    name: 'CS/Math graduates (%, 1998)',
+    name: 'CS/Math graduates (%, c. 1997, UNESCO)',
     get: (code) => _.find(allData[code], ['citation', 'UNESCO'])?.participation,
   },
+  eu: {
+    name: 'CS/Math students (%, c. 1998, EU)',
+    get: (code) => _.find(allData[code], ['citation', 'EU'])?.participation,
+  },
 
-  population: { name: 'Latest (any)', get: (code) => latestData[code] },
-  gdpPerCapita: { name: 'Latest (any)', get: (code) => latestData[code] },
+  population: { name: 'Population', get: (code) => latestData[code] },
+  gdpPerCapita: { name: 'GDP per capita', get: (code) => latestData[code] },
 };
 
 const CorrelatorPlayground = React.createContext({
@@ -133,6 +143,7 @@ const CorrelatorScroller = () => {
               <Button y value="earliestWorldBank" />
               <Button y value="handpicked" />
               <Button y value="unesco" />
+              <Button y value="eu" />
             </ButtonGroup>
           </p>
           <p>

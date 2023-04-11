@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "predeploy": "rm -rf dist && parcel build src/index.html --public-url 'https://bradleyhrc.github.io/cs492-project'",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

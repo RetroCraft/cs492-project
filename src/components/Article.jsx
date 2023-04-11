@@ -19,33 +19,30 @@ export default function Article() {
         Later on in the event, we had the opportunity to talk to full-time software engineers and
         quantitative traders who work at the company. But, in contrast to the group of women who
         greeted us at the entrance, this group of engineers was exclusively male. While this is just
-        one personal anecdote, it aligns with an alarming reality of the one sided gender ratio in many
-        STEM fields. 
+        one personal anecdote, it aligns with an alarming reality of the one sided gender ratio in
+        many STEM fields.
       </Container>
       <FullPageScroller Background={Pie}>
         <div>
-          In Computer Science, you're likely to notice an
-          overwhelming percent of computer scientists are men.
+          As a computer scientist, you're likely to notice an overwhelming majority of your
+          colleagues are men.
         </div>
         <div>
-          The 2022 Stack Overflow survey of over
-          70,000 software developers found that globally only 5.17% of{' '}
-          <a href="https://survey.stackoverflow.co/2022">respondents were women</a>, an unnerving
-          statistic for one of the most popular help sites for software
-          engineering.
+          The 2022 <a href="https://survey.stackoverflow.co/2022">Stack Overflow survey</a> of over
+          70,000 software developers found that globally{' '}
+          <Highlight color="#ffc0cb">only 5.17% of respondents were women</Highlight>, an unnerving
+          statistic for one of the most popular help sites for software engineering.
         </div>
         <div>
-          In the United States, the software publishing industry as a whole has a
-          slightly better ratio with females making up 31% of the{' '}
+          In the United States, the software publishing industry as a whole has a slightly better
+          ratio with <Highlight color="#ffc0cb">women making up 31%</Highlight> of the{' '}
           <a href="https://www.bls.gov/cps/cpsaat18.htm">workforce</a>.
         </div>
       </FullPageScroller>
-      <Container>
-           We can also find this disparity in the education system. 
-      </Container>
       <FullPageScroller Background={FemaleCounter}>
         <div>
-          Let's consider a group of <Highlight color="#222222">100 post-secondary students</Highlight>.
+          We can also find this disparity in the education system. Let's consider a group of{' '}
+          <Highlight color="#222222">100 post-secondary students</Highlight>.
         </div>
         <div>
           In 1970, <Highlight color="#ffc0cb">42 of them</Highlight> would have been women, on

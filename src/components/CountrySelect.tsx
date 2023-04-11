@@ -6,8 +6,8 @@ import { codeToName, highlightableCountries } from '../data';
 
 const CountrySelect = () => {
   const { code, setCode } = React.useContext(CountryContext);
-  const options = highlightableCountries.map((c) => ({
-    value: c,
+  const options = highlightableCountries.map((code) => ({
+    value: code,
     label: codeToName[code],
   }));
   return (

@@ -1,14 +1,23 @@
 [
     {
         "case": 1,
-        "title": "Reported Interest in CS",
-        "stereotypical": [0.22, -0.55],
-        "nonstereotypical": [-0.04, 0.52]
+        "title": "Reported Interest in taking a CS class",
+        "before": [3.96,2.91],
+        "stereotypical": [0, 0],
+        "nonstereotypical": [0, 0]
     },
     {
         "case": 2,
-        "title": "Interested in Company Post-Grad",
-        "stereotypical": [3.61, 2.76],
-        "nonstereotypical": [4.74, 5.94]
+        "title": "Reported Interest in taking a CS class",
+        "before": [3.96,2.91],
+        "stereotypical": [3.69, 2.8],
+        "nonstereotypical": [0, 0]
+    },
+    {
+        "case": 3,
+        "title": "Reported Interest in taking a CS class",
+        "before": [3.96,2.91],
+        "stereotypical": [3.69, 2.8],
+        "nonstereotypical": [3.79, 3.69]
     }
 ]

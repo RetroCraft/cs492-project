@@ -9,57 +9,95 @@ import Highlight from './Highlight';
 
 const BarGraph: ScrollComponent = ({ currentStepIndex }) => {
 
-  const caseNum = stereotypeData[currentStepIndex];
-  const range = [1, 7];
-  
+  const caseNum = currentStepIndex ? stereotypeData[1] : stereotypeData[0];
+  const range = !currentStepIndex ? [-1, 1] : [0, 8];
+
+  const menRatios = [3.96, 3.69, 3.79]
+  const femaleRatios = [2.91, 2.8, 3.69]
+
+  const menData: { x: number; y: number; label: string }[] = [];
+  const femaleData: { x: number; y: number; label: string }[] = [];
+  menData.push({
+    x: 1,
+    y: menRatios[0],
+    label: "Before",
+  });
+  femaleData.push({
+    x: 3,
+    y: femaleRatios[0],
+    label: "Before",
+  });
+  if (currentStepIndex >=1) {
+    menData.push({
+      x: 5,
+      y: menRatios[1],
+      label: "After stereotypical",
+    });
+    femaleData.push({
+      x: 7,
+      y: femaleRatios[1],
+      label: "After stereotypical",
+    });
+  }
+  if (currentStepIndex === 2) {
+    menData.push({
+      x: 8,
+      y: menRatios[2],
+      label: "After non-stereotypical",
+    });
+    femaleData.push({
+      x: 9,
+      y: femaleRatios[2],
+      label: "After non-stereotypical",
+    });
+  }
+
   return (
-    <VictoryChart 
-      height={window.innerHeight - 100} 
-      domain={{y: [range[0], range[1]]}}
+    <VictoryChart
+      height={window.innerHeight - 100}
+      domain={{ y: [range[0], range[1]] }}
       containerComponent={
         <VictoryVoronoiContainer
           labels={({ datum }) => `${datum.y}`}
         />
       }>
 
-      <VictoryLegend 
-          orientation="horizontal"
-          gutter={20}
-          data={[
-            { name: "Men", symbol: { fill: "teal" } },
-            { name: "Women", symbol: { fill: "#ffc0cb" } },
-          ]}
-        />
-      
-      <VictoryGroup 
-        offset={40} 
+      <VictoryLegend
+        orientation="horizontal"
+        gutter={20}
+        data={[
+          { name: "Men", symbol: { fill: "teal" } },
+          { name: "Women", symbol: { fill: "#ffc0cb" } },
+        ]}
+      />
+
+      <VictoryGroup
+        offset={55}
         animate={{ duration: 400, onLoad: { duration: 200 } }}
         colorScale={["teal", "#ffc0cb"]}
       >
 
-<VictoryBar
-          data={[{x: "Before", y: caseNum.before[0]},
-          {x: "Stereotypical", y: caseNum.stereotypical[0]}, 
-          {x: "Non-Stereotypical", y: caseNum.nonstereotypical[0]}
-        ]} 
+        <VictoryBar
+          domain={{ y: [0, 7], x: [0, 10] }}
+          cornerRadius={{
+            topLeft: ({ datum }) => 4,
+            topRight: ({ datum }) => 4
+          }}
+          data={menData}
         />
         <VictoryBar
-
-data={[{x: "Before", y: caseNum.before[1]},
-{x: "Stereotypical", y: caseNum.stereotypical[1]}, 
-{x: "Non-Stereotypical", y: caseNum.nonstereotypical[1]}
-]}         />
-        <VictoryBar
-
-data={[{x: "Before", y: caseNum.before[2]},
-{x: "Stereotypical", y: caseNum.stereotypical[2]}, 
-{x: "Non-Stereotypical", y: caseNum.nonstereotypical[2]}
-]}         />
+          domain={{ y: [0, 7], x: [0, 10] }}
+          cornerRadius={{
+            topLeft: ({ datum }) => 4,
+            topRight: ({ datum }) => 4
+          }}
+          data={femaleData}
+        />
 
       </VictoryGroup>
     </VictoryChart>
-  );
-};
+  )
+}
 
 const BarGraphScroller = () => {
   return (

@@ -104,7 +104,6 @@ export default function Article() {
         aspernatur? Quo, voluptatibus modi.
       </Container>
       <Correlator />
-      <BarGraph />
 
 
 
@@ -128,14 +127,13 @@ export default function Article() {
         </div>
         <div>
           Girls are also negatively influenced by gender stereotypes in the media they see in their 
-          environment. Adding stereotypical computer science items such as Star Wars/Star Trek items,
-          electronics, software, tech magazines, computer parts, video games, computer books, and science
-          fiction books, to a classroom made high school girls 
-          significantly less likely to be interested in taking a computer science course
+          environment. Removing stereotypical computer science items from a classroom made high school girls 
+          significantly more likely to be interested in taking a computer science course
           ({''}
           <a href="https://psycnet.apa.org/manuscript/2015-37516-001.pdf">Master et al., 2015</a>).
         </div>
       </Container>
+      <BarGraph />
     </>
   );
 }

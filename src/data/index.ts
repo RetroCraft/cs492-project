@@ -1,6 +1,5 @@
 import participation from './participation_all.json';
 import culture from './culture.json';
-import regions from './regions.json';
 import _ from 'lodash';
 import { iso31661 } from 'iso-3166';
 
@@ -14,7 +13,12 @@ export const allCountries = _.sortBy(
 );
 
 // source: https://meta.wikimedia.org/wiki/List_of_countries_by_regional_classification
+import regions from './regions.json';
 export { regions };
+
+// source: https://data.worldbank.org/indicator/SP.POP.TOTL
+import indicators from './indcators.json';
+export { indicators };
 
 export const allData = _.groupBy(participation, 'code');
 export const latestData = allCountries.reduce((acc, code) => {

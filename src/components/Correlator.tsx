@@ -6,66 +6,124 @@ import { VictoryAxis, VictoryChart, VictoryScatter, VictoryVoronoiContainer } fr
 
 import { ScrollComponent } from '../constants/types';
 import { useCountry } from '../contexts/CountryContext';
-import { allCountries, allData, codeToName, cultureData, latestData, regions } from '../data';
+import {
+  allCountries,
+  allData,
+  codeToName,
+  cultureData,
+  indicators,
+  latestData,
+  regions,
+} from '../data';
 import CountrySelect from './CountrySelect';
 import HalfPageScroller from './HalfPageScroller';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const colors = {
-  "Europe": "#1f77b4",
-  "Asia & Pacific": "#ff7f0e",
-  "South/Latin America": "#2ca02c",
-  "Arab States": "#d62728",
-  "North America": "#9467bd",
-  "Africa": "#8c564b",
-  "Middle east": "#e377c2"
-}
+  Europe: '#1f77b4',
+  'Asia & Pacific': '#ff7f0e',
+  'South/Latin America': '#2ca02c',
+  'Arab States': '#d62728',
+  'North America': '#9467bd',
+  Africa: '#8c564b',
+  'Middle east': '#e377c2',
+};
 
 const dataExtractors = {
   // cultural dimensions
   powerDistance: {
     name: 'Power Distance',
+    description: 'Higher values indicate a stronger power hierarchy',
     get: (code) => cultureData[code]?.powerDistance,
   },
-  individuality: { name: 'Individuality', get: (code) => cultureData[code]?.individuality },
-  masculinity: { name: 'Masculinity', get: (code) => cultureData[code]?.masculinity },
+  individuality: {
+    name: 'Individuality',
+    description: 'Higher values indicate looser ties with family and community',
+    get: (code) => cultureData[code]?.individuality,
+  },
+  masculinity: {
+    name: 'Masculinity',
+    description:
+      'Higher values indicate stereotypically masculine culture (hero-worshipping, achievement-centric, etc.)',
+    get: (code) => cultureData[code]?.masculinity,
+  },
   uncertaintyAvoidance: {
     name: 'Uncertainty Avoidance',
+    description: 'Higher values indicate a culture that is more risk-averse',
     get: (code) => cultureData[code]?.uncertaintyAvoidance,
   },
-  timeOrientation: { name: 'Time Orientation', get: (code) => cultureData[code]?.timeOrientation },
-  indulgence: { name: 'Indulgence', get: (code) => cultureData[code]?.indulgence },
+  timeOrientation: {
+    name: 'Time Orientation',
+    description: 'Higher values indicate a culture that is more long-term oriented',
+    get: (code) => cultureData[code]?.timeOrientation,
+  },
+  indulgence: {
+    name: 'Indulgence',
+    description: 'Higher values indicate a culture that is more hedonistic',
+    get: (code) => cultureData[code]?.indulgence,
+  },
 
-  latest: { name: 'Participation (%, latest)', get: (code) => latestData[code] },
-  latestWorldBank: {
-    name: 'STEM graduates (%, c. 2018, World Bank)',
+  latest: {
+    name: 'Graduates/students (%)',
+    description: 'Latest graduates data from any source',
     get: (code) => latestData[code],
   },
+  latestWorldBank: {
+    name: 'STEM graduates (%, c. 2018)',
+    description: 'Latest World Bank data',
+    get: (code) =>
+      _.maxBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation,
+  },
   earliestWorldBank: {
-    name: 'STEM graduates (%, c. 2000, World Bank)',
+    name: 'STEM graduates (%, c. 2000)',
+    description: 'Earliest World Bank data',
     get: (code) =>
       _.minBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation,
   },
+  delta: {
+    name: 'Change in STEM graduates (p.p.)',
+    description: 'Difference between latest and earliest World Bank data',
+    get: (code) =>
+      _.maxBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation -
+      _.minBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation,
+  },
   handpicked: {
-    name: 'CS/Math students (%, c. 2000, handpicked)',
+    name: 'CS/Math students (%, c. 2000)',
+    description: 'National and institutional data hand-curated by Galpin (2002)',
     get: (code) => _.maxBy(_.filter(allData[code], ['citation', 'Galpin']), 'year')?.participation,
   },
   unesco: {
     name: 'CS/Math graduates (%, c. 1997, UNESCO)',
+    description: 'National data from UNESCO (1998)',
     get: (code) => _.find(allData[code], ['citation', 'UNESCO'])?.participation,
   },
   eu: {
-    name: 'CS/Math students (%, c. 1998, EU)',
+    name: 'CS/Math students (%, c. 1998)',
+    description: 'National data from the European Union',
     get: (code) => _.find(allData[code], ['citation', 'EU'])?.participation,
   },
 
-  population: { name: 'Population', get: (code) => latestData[code] },
-  gdpPerCapita: { name: 'GDP per capita', get: (code) => latestData[code] },
+  population: {
+    name: 'Population',
+    description: 'Population on a log scale (World Bank, 2021)',
+    get: (code) => Math.log(indicators[code]?.population),
+  },
+  gdp: {
+    name: 'GDP',
+    description: 'GDP on a log scale (World Bank, 2021)',
+    get: (code) => Math.log(indicators[code]?.gdp),
+  },
+  gdpPerCapita: {
+    name: 'GDP per capita',
+    description: '(World Bank, 2021)',
+    get: (code) => indicators[code]?.gdpPerCapita / 1000,
+  },
 };
 
 const CorrelatorPlayground = React.createContext({
   xAxis: 'masculinity',
   setXAxis: (_) => {},
-  yAxis: 'latest',
+  yAxis: 'latestWorldBank',
   setYAxis: (_) => {},
   sizing: 'population',
   setSizing: (_) => {},
@@ -75,7 +133,7 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
   const country = useCountry();
   const { xAxis, yAxis, sizing } = React.useContext(CorrelatorPlayground);
   const X = ['masculinity', 'powerDistance', xAxis][currentStepIndex];
-  const Y = ['latest', 'latest', yAxis][currentStepIndex];
+  const Y = ['latestWorldBank', 'latestWorldBank', yAxis][currentStepIndex];
   const S = ['population', 'population', sizing][currentStepIndex];
   const data = allCountries
     .map((code) => ({
@@ -84,7 +142,8 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
       amount: dataExtractors[S].get(code),
       code,
     }))
-    .filter(({ x, y }) => x && y);
+    .filter(({ x, y, amount }) => x && y && amount);
+
   return (
     <VictoryChart
       height={window.innerHeight * 0.9}
@@ -104,33 +163,38 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
         style={{ data: { fill: ({ datum }) => colors[regions[datum.code]] } }}
         animate={{ duration: 500 }}
         bubbleProperty="amount"
-        maxBubbleSize={15}
-        minBubbleSize={1}
+        maxBubbleSize={25}
+        minBubbleSize={5}
       />
     </VictoryChart>
   );
 };
 
-const Button = ({ children = null, x = false, y = false, s = false, value }) => {
+const Button = ({ x = false, y = false, s = false, value }) => {
   const { xAxis, setXAxis, yAxis, setYAxis, sizing, setSizing } =
     React.useContext(CorrelatorPlayground);
   const isSelected = (x && xAxis === value) || (y && yAxis === value) || (s && sizing === value);
   const update = (x && setXAxis) || (y && setYAxis) || setSizing;
   return (
-    <BootstrapButton
-      variant={isSelected ? 'primary' : 'outline-primary'}
-      size="sm"
-      onClick={() => update(value)}
+    <OverlayTrigger
+      placement="right"
+      overlay={<Tooltip>{dataExtractors[value].description}</Tooltip>}
     >
-      {children || dataExtractors[value].name}
-    </BootstrapButton>
+      <BootstrapButton
+        variant={isSelected ? 'primary' : 'outline-primary'}
+        size="sm"
+        onClick={() => update(value)}
+      >
+        {dataExtractors[value].name}
+      </BootstrapButton>
+    </OverlayTrigger>
   );
 };
 
 const CorrelatorScroller = () => {
   const country = useCountry();
   const [xAxis, setXAxis] = React.useState('masculinity');
-  const [yAxis, setYAxis] = React.useState('latest');
+  const [yAxis, setYAxis] = React.useState('latestWorldBank');
   const [sizing, setSizing] = React.useState('population');
   return (
     <CorrelatorPlayground.Provider value={{ xAxis, setXAxis, yAxis, setYAxis, sizing, setSizing }}>
@@ -149,7 +213,7 @@ const CorrelatorScroller = () => {
               <Button x value="timeOrientation" />
               <Button x value="indulgence" />
             </ButtonGroup>
-            {'  '}
+            {/* {'  '}
             <ButtonGroup vertical>
               <Button x value="masculinity" />
               <Button x value="powerDistance" />
@@ -157,7 +221,7 @@ const CorrelatorScroller = () => {
               <Button x value="uncertaintyAvoidance" />
               <Button x value="timeOrientation" />
               <Button x value="indulgence" />
-            </ButtonGroup>
+            </ButtonGroup> */}
           </p>
           <p>
             Female participation rates:{' '}
@@ -165,6 +229,7 @@ const CorrelatorScroller = () => {
               <Button y value="latest" />
               <Button y value="latestWorldBank" />
               <Button y value="earliestWorldBank" />
+              <Button y value="delta" />
               <Button y value="handpicked" />
               <Button y value="unesco" />
               <Button y value="eu" />
@@ -174,6 +239,7 @@ const CorrelatorScroller = () => {
             Dot sizes:{' '}
             <ButtonGroup>
               <Button s value="population" />
+              <Button s value="gdp" />
               <Button s value="gdpPerCapita" />
             </ButtonGroup>
           </p>

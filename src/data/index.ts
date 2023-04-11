@@ -29,6 +29,16 @@ export const latestData = allCountries.reduce((acc, code) => {
     [code]: latest.participation,
   };
 }, {});
+export const oldData = allCountries.reduce((acc, code) => {
+  const countryData = participation.filter((d) => d.code === code && d.citation === 'UNESCO');
+  const latest = _.maxBy(countryData, 'year');
+  if (latest)
+    return {
+      ...acc,
+      [code]: latest.participation,
+    };
+  return acc;
+}, {});
 export const disasterData = _.fromPairs(
   allCountries
     .map((code) => {

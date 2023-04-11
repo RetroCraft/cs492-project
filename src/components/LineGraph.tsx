@@ -2,6 +2,7 @@ import React from 'react';
 import FullPageScroller from './FullPageScroller';
 import { VictoryAxis, VictoryChart, VictoryLegend, VictoryLine } from 'victory';
 import { ScrollComponent, axisStyle } from '../constants';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const data = {
   bio: { name: 'Biology', color: 'red', data: [25, 31.2, 45.5, 50.2, 59.8] },
@@ -29,8 +30,9 @@ const LineGraph: ScrollComponent = ({ currentStepIndex }) => {
       />
       {Object.keys(data).map((key, i) => (
         <VictoryLine
+          animate={{ duration: 500 }}
           key={i}
-          data={data[key].data.map((y, i) => ({
+          data={data[key].data.slice(0, [2, 3, 5][currentStepIndex]).map((y, i) => ({
             x: ['1966', '1976', '1986', '1996', '2006'][i],
             y,
           }))}
@@ -50,9 +52,21 @@ const LineGraphScroller = () => {
   return (
     <FullPageScroller Background={LineGraph}>
       <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse ab, enim officiis ut
-        consectetur veniam! Facere magni ea similique quaerat maiores odit omnis nisi consequuntur!
-        Cupiditate maxime earum repellendus architecto?
+        In the United States from 1970 to 1980 the ratio of women in computer science programs, like
+        every other STEM field, was actually increasing.
+        <OverlayTrigger placement="top" overlay={<Tooltip>(Hill et al., 2010)</Tooltip>}>
+          <a href="https://www.aauw.org/app/uploads/2020/03/why-so-few-research.pdf">
+            was actually increasing
+          </a>
+        </OverlayTrigger>
+      </div>
+      <div>
+        It reached almost 40% before the trend reversed and it started declining to 20% in the 2000s
+        where it's remained until today.
+      </div>
+      <div>
+        Why is it that in the United States the gender ratio of women has steadily increased for
+        most stem fields except computer science?
       </div>
     </FullPageScroller>
   );

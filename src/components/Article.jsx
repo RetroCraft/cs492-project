@@ -71,39 +71,7 @@ export default function Article() {
         significantly. Continue scrolling.
       </Container>
       <DisasterLineGraph />
-      <Container>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, dignissimos! Nisi dicta
-        modi harum cumque fuga temporibus ullam vel saepe deleniti numquam laboriosam quasi nobis
-        error illo adipisci, aut voluptas. Quaerat, perspiciatis! Vel ipsum totam non repellendus
-        inventore reprehenderit obcaecati expedita quos eius, dolorum perspiciatis voluptates itaque
-        reiciendis ab culpa dignissimos ipsam voluptate id sequi quia earum. Eos, consequatur
-        assumenda. Quaerat architecto, maxime magnam ipsa incidunt fuga exercitationem expedita
-        molestiae in error quibusdam, animi eius accusamus nihil sapiente necessitatibus illo
-        itaque, tenetur ipsam vel repellendus aspernatur. Cumque voluptatem quam voluptatum! Dolorum
-        nesciunt deleniti cumque ut. Dolorum ipsum enim sed? Tempore magni voluptate necessitatibus,
-        fuga consequatur obcaecati molestiae cumque delectus deleniti suscipit amet consectetur
-        consequuntur soluta id quae dolorum accusamus adipisci. Laborum provident dignissimos
-        temporibus itaque repellendus aut quam iusto beatae molestias vel totam doloremque magni
-        harum amet ipsam nisi, officia praesentium in fugiat, quisquam, cupiditate deleniti
-        aspernatur? Quo, voluptatibus modi.
-      </Container>
       <Choropleth />
-      <Container>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, dignissimos! Nisi dicta
-        modi harum cumque fuga temporibus ullam vel saepe deleniti numquam laboriosam quasi nobis
-        error illo adipisci, aut voluptas. Quaerat, perspiciatis! Vel ipsum totam non repellendus
-        inventore reprehenderit obcaecati expedita quos eius, dolorum perspiciatis voluptates itaque
-        reiciendis ab culpa dignissimos ipsam voluptate id sequi quia earum. Eos, consequatur
-        assumenda. Quaerat architecto, maxime magnam ipsa incidunt fuga exercitationem expedita
-        molestiae in error quibusdam, animi eius accusamus nihil sapiente necessitatibus illo
-        itaque, tenetur ipsam vel repellendus aspernatur. Cumque voluptatem quam voluptatum! Dolorum
-        nesciunt deleniti cumque ut. Dolorum ipsum enim sed? Tempore magni voluptate necessitatibus,
-        fuga consequatur obcaecati molestiae cumque delectus deleniti suscipit amet consectetur
-        consequuntur soluta id quae dolorum accusamus adipisci. Laborum provident dignissimos
-        temporibus itaque repellendus aut quam iusto beatae molestias vel totam doloremque magni
-        harum amet ipsam nisi, officia praesentium in fugiat, quisquam, cupiditate deleniti
-        aspernatur? Quo, voluptatibus modi.
-      </Container>
       <Correlator />
       <LineGraphScroller />
       <Container>

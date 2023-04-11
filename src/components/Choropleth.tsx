@@ -5,12 +5,13 @@ import { geoRobinson } from 'd3-geo-projection';
 import { ScrollComponent } from '../constants';
 import topo from '../data/world.json';
 import FullPageScroller from './FullPageScroller';
-import { latestData } from '../data';
+import { allData, latestData, oldData } from '../data';
 
 const drawSvg = ({ inputRef, data }) => {
   const width = 800;
   const height = 450;
   const container = d3.select(inputRef.current);
+  container.selectAll('*').remove();
   const svg = container
     .append('svg')
     .attr('width', '100%')
@@ -23,7 +24,7 @@ const drawSvg = ({ inputRef, data }) => {
     .translate([width / 2, height / 2]);
 
   // Define color scale
-  const colorScale = d3.scaleThreshold().domain([0, 25, 50, 75, 100]).range(d3.schemeOrRd[7]);
+  const colorScale = d3.scaleThreshold().domain([0, 10, 20, 30, 40, 50]).range(d3.schemeOrRd[7]);
 
   // add tooltip
   const tooltip = d3.select('body').append('div').attr('class', 'tooltip').style('opacity', 0);
@@ -91,14 +92,10 @@ const drawSvg = ({ inputRef, data }) => {
 
 const Choropleth: ScrollComponent = ({ currentStepIndex }) => {
   const inputRef = useRef(null);
-  const [hasRendered, setRender] = useState(false);
 
   useEffect(() => {
-    if (!hasRendered) {
-      drawSvg({ inputRef, data: latestData });
-      setRender(true);
-    }
-  });
+    drawSvg({ inputRef, data: [latestData, oldData][currentStepIndex] });
+  }, [currentStepIndex]);
 
   return <div id="choropleth-container" ref={inputRef} />;
 };
@@ -106,7 +103,14 @@ const Choropleth: ScrollComponent = ({ currentStepIndex }) => {
 const ChoroplethScroller = () => {
   return (
     <FullPageScroller Background={Choropleth}>
-      <div>Tests</div>
+      <div>
+        We can visualize which countries have a higher female participation rate from the previous
+        dataset by plotting on a map of the globe.
+      </div>
+      <div>
+        With the oldest dataset we have, there is actually a clearer geographic pattern: eastern
+        Europe and central Asia have a handful of majority-women STEM/CS programs.
+      </div>
     </FullPageScroller>
   );
 };

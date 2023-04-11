@@ -106,7 +106,7 @@ export default function Article() {
       <Correlator />
 
       <Container>
-        <h2>Why girls aren't choosing computer science</h2>
+        <h2>Why Girls Aren't Choosing Computer Science</h2>
         <div>
           During the 80s in the United States, personal computers became more common in homes. These
           computers were marketed strongly towards men pushing forward new gender stereotypes ({''}
@@ -132,7 +132,8 @@ export default function Article() {
         </div>
       </Container>
       <BarGraph />
-        <h2>What countries are doing right</h2>
+      <Container>
+        <h2>What Countries Are Doing Right</h2>
         <p>
           Countries such as {''}
           <a href="https://journals.sagepub.com/doi/pdf/10.1177/0306312709334636?casa_token=sFcSiT0xG-UAAAAA:Qu7C7uUplADMEx0RbYIEZb0sGHayw4RZr33CaJQHafjduB5KnWgxKspCldwgb6bvoLaz7sMm2_be">
@@ -162,6 +163,25 @@ export default function Article() {
         Othman and Latih, 2009
           </a>).
         </p>
+      </Container>
+
+      <Container>
+        <h2>So, What Can We Do About It?</h2>
+        <div>
+          <p>
+          Studies show that spotlighting female role models, such as female engineers in recruiting sessions, increases the interest and engagement of female attendants ({''}
+          <a href="http://depts.washington.edu/sibl/Publications/Cheryan,%20Plaut,%20Davies,%20%26%20Steele%20(2009).pdf">Cheryan et al., 2009</a>). This means that empowering women in universities, work places, recruiting sessions, and tech conferences is crucial in creating a space that is catered not only for men, but also women. 
+          </p>
+          <p>
+          Similarly, deconstructing our traditional image of computer scientists will also help. “Tech bro” culture refers to the competitive and exclusive work culture that is common in the tech industry. These prevalent attitudes, along with an industry largely catering to male interests, contribute to sexism and elitism in the tech space. 
+          The removal of established stereotypes and attitudes in CS should be followed with greater inclusion of different identities and interests to interest and engage members that do not fit into the stereotype. 
+          </p>
+          <p>
+          This argument also extends to the physical space in which we gather. In the previous section, we saw how the physical space can affect the interest of women towards CS.
+          Moving away from the CS stereotypes, a more inclusive learning space can better serve female students.
+          </p>
+        </div>
+      </Container>
     </>
   );
 }

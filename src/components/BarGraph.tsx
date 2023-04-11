@@ -71,14 +71,15 @@ const BarGraphScroller = () => {
   return (
     <HalfPageScroller Background={BarGraph}>
       <div>
-        A experiment with 165 high school students in the Northwestern United States asked them to
+        An experiment with 165 high school students in the northwestern United States asked them to
         rate their interest in taking a CS class from 1-7. This is their interest before seeing a
         picture of the classroom.
       </div>
       <div>
         After seeing a picture of a <Highlight color="teal">stereotypical CS classroom</Highlight>{' '}
         with Star Wars/Star Trek items, electronics, software, tech magazines, computer parts, video
-        games, computer books, and science fiction books, the interest remained about the same.
+        games, computer books, and science fiction books, the interest levels did not meaningfully
+        change.
       </div>
       <div>
         However, after seeing a picture of a{' '}

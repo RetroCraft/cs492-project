@@ -77,7 +77,7 @@ const DisasterLineScroller = () => {
   return (
     <HalfPageScroller Background={DisasterLineGraph}>
       <div>
-        We've compiled data points demonstrating the gender ratio of university acceptance in STEM
+        We've compiled data points demonstrating the participation ratios of women in STEM
         across different countries, from the 1990s to the 2010s. The Y-axis represents the ratio of
         women admitted, while the X-axis represents time.
       </div>
@@ -96,9 +96,9 @@ const DisasterLineScroller = () => {
         in the ratio of women.
       </div>
       <div>
-        While certain countries show progress in their admission ratios, others report a downward
+        While certain countries show progress in their participation rates, others report a downward
         trend. But overall, <Highlight color="#A6E220">most countries</Highlight> are getting closer
-        to the middle of the graph (50% ratio of women admission in STEM). While this may not be
+        to the middle of the graph (50% participation of women in STEM). While this may not be
         enough, it does show a general trend towards a more balanced and inclusive environment.
       </div>
     </HalfPageScroller>

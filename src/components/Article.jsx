@@ -134,6 +134,36 @@ export default function Article() {
         </div>
       </Container>
       <BarGraph />
+        <h2>What countries are doing right</h2>
+        <p>
+          Countries such as {''}
+          <a href="https://journals.sagepub.com/doi/pdf/10.1177/0306312709334636?casa_token=sFcSiT0xG-UAAAAA:Qu7C7uUplADMEx0RbYIEZb0sGHayw4RZr33CaJQHafjduB5KnWgxKspCldwgb6bvoLaz7sMm2_be">
+          Malaysia</a> and {''}  <a href="https://dl.acm.org/doi/10.1145/1140124.1140184">Armenia</a> have a 
+          much higher percentage of women in computer science.
+          In these countries gender stereotypes are not a significant factor
+          preventing women from enrolling in CS in university. 
+        </p>
+        <p>
+          Gender stereotypes in these countries may even be pushing women towards CS. 
+          In Malaysia, indoor computer science jobs are stereotypically seen as less masculine than outdoor 
+          jobs and thus better suited for females ({''}
+          <a href="https://journals.sagepub.com/doi/pdf/10.1177/0306312709334636?casa_token=sFcSiT0xG-UAAAAA:Qu7C7uUplADMEx0RbYIEZb0sGHayw4RZr33CaJQHafjduB5KnWgxKspCldwgb6bvoLaz7sMm2_be">
+          Mellström, 2009
+          </a>).
+        </p>
+        <p>
+        Similarly, the Armenia study found that while only 52% of females think engineering is suitable 
+        for women, 79% of females thought CS was suitable.
+        </p>
+        <p>
+        Female Malaysian students may also be positively influenced by a
+        large number of female role models. In 2006, In the Faculty of CS & IT at the University of
+        Malaya, the dean, three out four department heads, 61% of  faculty lecturers, and 73% of
+        the Ph.D. holders were female
+        ({''}<a href="https://www.cs.cmu.edu/~cfrieze/courses/malaysia.pdf">
+        Othman and Latih, 2009
+          </a>).
+        </p>
     </>
   );
 }

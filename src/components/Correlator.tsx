@@ -6,9 +6,19 @@ import { VictoryAxis, VictoryChart, VictoryScatter, VictoryVoronoiContainer } fr
 
 import { ScrollComponent } from '../constants/types';
 import { useCountry } from '../contexts/CountryContext';
-import { allCountries, allData, codeToName, cultureData, latestData } from '../data';
+import { allCountries, allData, codeToName, cultureData, latestData, regions } from '../data';
 import CountrySelect from './CountrySelect';
 import HalfPageScroller from './HalfPageScroller';
+
+const colors = {
+  "Europe": "#1f77b4",
+  "Asia & Pacific": "#ff7f0e",
+  "South/Latin America": "#2ca02c",
+  "Arab States": "#d62728",
+  "North America": "#9467bd",
+  "Africa": "#8c564b",
+  "Middle east": "#e377c2"
+}
 
 const dataExtractors = {
   // cultural dimensions
@@ -32,7 +42,8 @@ const dataExtractors = {
   },
   earliestWorldBank: {
     name: 'STEM graduates (%, c. 2000, World Bank)',
-    get: (code) => _.minBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation,
+    get: (code) =>
+      _.minBy(_.filter(allData[code], ['citation', 'World Bank']), 'year')?.participation,
   },
   handpicked: {
     name: 'CS/Math students (%, c. 2000, handpicked)',
@@ -65,8 +76,14 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
   const { xAxis, yAxis, sizing } = React.useContext(CorrelatorPlayground);
   const X = ['masculinity', 'powerDistance', xAxis][currentStepIndex];
   const Y = ['latest', 'latest', yAxis][currentStepIndex];
+  const S = ['population', 'population', sizing][currentStepIndex];
   const data = allCountries
-    .map((code) => ({ x: dataExtractors[X].get(code), y: dataExtractors[Y].get(code), code }))
+    .map((code) => ({
+      x: dataExtractors[X].get(code),
+      y: dataExtractors[Y].get(code),
+      amount: dataExtractors[S].get(code),
+      code,
+    }))
     .filter(({ x, y }) => x && y);
   return (
     <VictoryChart
@@ -82,7 +99,14 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
     >
       <VictoryAxis label={dataExtractors[X].name} />
       <VictoryAxis dependentAxis label={dataExtractors[Y].name} />
-      <VictoryScatter data={data} animate={{ duration: 500 }} />
+      <VictoryScatter
+        data={data}
+        style={{ data: { fill: ({ datum }) => colors[regions[datum.code]] } }}
+        animate={{ duration: 500 }}
+        bubbleProperty="amount"
+        maxBubbleSize={15}
+        minBubbleSize={1}
+      />
     </VictoryChart>
   );
 };
@@ -148,7 +172,7 @@ const CorrelatorScroller = () => {
           </p>
           <p>
             Dot sizes:{' '}
-            <ButtonGroup vertical>
+            <ButtonGroup>
               <Button s value="population" />
               <Button s value="gdpPerCapita" />
             </ButtonGroup>

@@ -5,6 +5,7 @@ import Choropleth from './Choropleth';
 import Correlator from './Correlator';
 import Highlight from './Highlight';
 import Pie from './Pie';
+import BarGraph from './BarGraph';
 import { Container } from 'react-bootstrap';
 
 export default function Article() {
@@ -103,6 +104,7 @@ export default function Article() {
         aspernatur? Quo, voluptatibus modi.
       </Container>
       <Correlator />
+      <BarGraph />
     </>
   );
 }

@@ -1,0 +1,14 @@
+[
+    {
+        "case": 1,
+        "title": "Reported Interest in CS",
+        "stereotypical": [0.22, -0.55],
+        "nonstereotypical": [-0.04, 0.52]
+    },
+    {
+        "case": 2,
+        "title": "Interested in Company Post-Grad",
+        "stereotypical": [3.61, 2.76],
+        "nonstereotypical": [4.74, 5.94]
+    }
+]

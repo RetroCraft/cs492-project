@@ -4,7 +4,7 @@ import BootstrapButton from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { VictoryAxis, VictoryChart, VictoryScatter, VictoryVoronoiContainer } from 'victory';
 
-import { ScrollComponent } from '../constants/types';
+import { ScrollComponent, axisStyle } from '../constants';
 import { useCountry } from '../contexts/CountryContext';
 import {
   allCountries,
@@ -146,7 +146,7 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
 
   return (
     <VictoryChart
-      height={window.innerHeight * 0.9}
+      height={window.innerHeight * 0.8}
       width={window.innerWidth * 0.4}
       containerComponent={
         <VictoryVoronoiContainer
@@ -156,8 +156,8 @@ const Correlator: ScrollComponent = ({ currentStepIndex }) => {
         />
       }
     >
-      <VictoryAxis label={dataExtractors[X].name} />
-      <VictoryAxis dependentAxis label={dataExtractors[Y].name} />
+      <VictoryAxis label={dataExtractors[X].name} style={axisStyle} />
+      <VictoryAxis dependentAxis label={dataExtractors[Y].name} style={axisStyle} />
       <VictoryScatter
         data={data}
         style={{ data: { fill: ({ datum }) => colors[regions[datum.code]] } }}

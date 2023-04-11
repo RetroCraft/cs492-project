@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 console.log(d3);
 import { geoRobinson } from 'd3-geo-projection';
-import { ScrollComponent } from '../constants/types';
+import { ScrollComponent } from '../constants';
 import topo from '../data/world.json';
 import FullPageScroller from './FullPageScroller';
 import { latestData } from '../data';

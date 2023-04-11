@@ -6,14 +6,14 @@ import { useCountry } from '../contexts/CountryContext';
 import { codeToName, disasterData } from '../data';
 import CountrySelect from './CountrySelect';
 import HalfPageScroller from './HalfPageScroller';
-import { ScrollComponent } from '../constants/types';
+import { ScrollComponent } from '../constants';
 import Highlight from './Highlight';
 
 const DisasterLineGraph: ScrollComponent = ({ currentStepIndex }) => {
   const country = useCountry();
   return (
     <VictoryChart
-      height={window.innerHeight - 100}
+      height={window.innerHeight * 0.8}
       containerComponent={
         <VictoryVoronoiContainer
           labels={({ datum }) => `${codeToName[datum.code]}\n${_.round(datum.y, 1)}%`}

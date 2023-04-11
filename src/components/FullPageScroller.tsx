@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Scrollama, Step } from 'react-scrollama';
-import { ScrollComponent } from '../constants/types';
+import { ScrollComponent } from '../constants';
 
 const FullPageScroller: React.FC<{
   Background: ScrollComponent;

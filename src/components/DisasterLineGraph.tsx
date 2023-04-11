@@ -78,8 +78,7 @@ const DisasterLineScroller = () => {
     <HalfPageScroller Background={DisasterLineGraph}>
       <div>
         We've compiled data points demonstrating the participation ratios of women in STEM
-        across different countries, from the 1990s to the 2010s. The Y-axis represents the ratio of
-        women admitted, while the X-axis represents time.
+        across different countries, from the 1990s to the 2010s.
       </div>
       <div>
         As discussed earlier, <Highlight color="#F92772">certain countries</Highlight> saw

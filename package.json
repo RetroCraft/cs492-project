@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "predeploy": "rm -rf dist && parcel build src/index.html --public-url 'https://www.bradleyhc.com/cs492-project/'",
+    "predeploy": "rm -rf dist && parcel build src/index.html --public-url 'https://retrocraft.github.io/cs492-project/'",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

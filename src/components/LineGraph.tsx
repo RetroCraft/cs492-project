@@ -53,12 +53,13 @@ const LineGraphScroller = () => {
     <FullPageScroller Background={LineGraph}>
       <div>
         In the United States from 1970 to 1980 the ratio of women in computer science programs, like
-        every other STEM field, was actually increasing.
+        every other STEM field,
         <OverlayTrigger placement="top" overlay={<Tooltip>(Hill et al., 2010)</Tooltip>}>
           <a href="https://www.aauw.org/app/uploads/2020/03/why-so-few-research.pdf">
             was actually increasing
           </a>
         </OverlayTrigger>
+        .
       </div>
       <div>
         It reached almost 40% before the trend reversed and it started declining to 20% in the 2000s

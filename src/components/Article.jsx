@@ -105,6 +105,37 @@ export default function Article() {
       </Container>
       <Correlator />
       <BarGraph />
+
+
+
+      <Container>
+        <h2>Why girls aren't choosing computer science</h2>
+        <div>
+          During the 80s in the United States, personal computers became more common in homes. 
+          These computers were marketed strongly towards men pushing forward new 
+          gender stereotypes ({''}
+          <a href="https://www.npr.org/sections/money/2014/10/21/357629765/when-women-stopped-coding">Henn, 2014</a>
+          ).
+        </div>
+        <div>
+          From a young age girls are influenced by these gender stereotypes that
+          say computer science is more interesting for boys. The more an individual girl
+          agrees with these stereotypes the smaller their own computer science interest is. 
+          Just seeing a label that says “girls are less interested in this activity than boys” 
+          is enough to influence their interest.
+          ({''}
+          <a href="https://www.pnas.org/doi/10.1073/pnas.2100030118">Master et al., 2021</a>).
+        </div>
+        <div>
+          Girls are also negatively influenced by gender stereotypes in the media they see in their 
+          environment. Adding stereotypical computer science items such as Star Wars/Star Trek items,
+          electronics, software, tech magazines, computer parts, video games, computer books, and science
+          fiction books, to a classroom made high school girls 
+          significantly less likely to be interested in taking a computer science course
+          ({''}
+          <a href="https://psycnet.apa.org/manuscript/2015-37516-001.pdf">Master et al., 2015</a>).
+        </div>
+      </Container>
     </>
   );
 }
